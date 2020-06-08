@@ -82,7 +82,7 @@ Mass_DM_old = (4*np.pi*(100*10**6)*(1.87**2))*(Radias_data_array - (1.87*np.arct
 
 Mass_sum = (Mass_data_array + Mass_DM_old)
 
-velocity_sum_old = np.sqrt(((4.30*10**-6)*Mass_sum)/Radias_data_array)
+velocity_sum_old = np.sqrt(((4.30*10**-6)*Mass_sum)/Radias_data_array) 
 
 plt.plot(Radias_data_array,velocity_sum_old)
 ##################################################################################################################
