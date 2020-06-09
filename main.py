@@ -95,6 +95,8 @@ plt.plot(Radias_data_array,velocity_sum_old)
 #Then compare X^2 to old p0 X^2 and if X^2 is smaller means better that old p0 so that p0 and its X^2 added to better lists.
 #Find smallest X^2 aka optimum p0.
 #3. Using optimum p0 find optimum DM mass - find optimum sum mass - find optimum calculated v - use optimum v to plot optimum graph.
+#4. This should be Q17 but all the methods I have tried for that take too long I believe since program keeps on running. So I'm just going to say uncertainty / 1 standard deviation = X^2 error for optimum p0 + 1.
+#5. Plot 2 graphs using optimum_density +- uncertainty to get +- velocity which use to graph. These are kinda like error bars.
 ##################################################################################################################
 #1.
 Xsquared_values_old =  ((velocity_data_array - velocity_sum_old)**2)/(change_in_velocity_data_array **2)
@@ -140,5 +142,30 @@ v_optimum = np.sqrt(((4.30*10**-6)*Optimum_Combined_mass)/Radias_data_array)
 
 plt.plot(Radias_data_array,v_optimum)
 
-plt.show()
+
 ########################################################################################################################
+#4.
+uncertainty_in_optimum_density = (closest_0_X_squared + 1)
+########################################################################################################################
+#5.
+
+density_plus = Optimum_density + uncertainty_in_optimum_density
+
+density_minus = Optimum_density - uncertainty_in_optimum_density
+
+Mass_DM_plus = (4*np.pi*(density_plus)*(1.87**2))*(Radias_data_array - (1.87*np.arctan(Radias_data_array / 1.87)))
+
+Mass_DM_minus = (4*np.pi*(density_minus)*(1.87**2))*(Radias_data_array - (1.87*np.arctan(Radias_data_array / 1.87)))
+
+Mass_sum_plus = (Mass_DM_plus + Mass_data_array)
+
+Mass_sum_minus = (Mass_DM_minus + Mass_data_array)
+
+v_plus = np.sqrt(((4.30*10**-6)*Mass_sum_plus)/Radias_data_array)
+
+v_minus = np.sqrt(((4.30*10**-6)*Mass_sum_minus)/Radias_data_array)
+
+plt.plot(Radias_data_array,v_plus,'bo')
+plt.plot(Radias_data_array,v_minus,'ro')
+
+plt.show()
