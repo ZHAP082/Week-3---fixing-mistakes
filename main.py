@@ -96,7 +96,7 @@ plt.plot(Radias_data_array,velocity_sum_old)
 #Find smallest X^2 aka optimum p0.
 #3. Using optimum p0 find optimum DM mass - find optimum sum mass - find optimum calculated v - use optimum v to plot optimum graph.
 #4. This finds the uncertainty in optium density. It is the same code as 2. with a 2 at the end of each thing so no confusion and since we esentially do the same thing, but a diffrent if statment which finds all values of unceratniy. Then we find the mean of those uncertainties. This value is actually the effect of uncertainty on optimum density since we found densities for optimum X^2 + 1. Hence our actual uncertainty is the diffrence between that and our optimum density.
-#5. Plot 2 graphs using optimum_density +- uncertainty to get +- velocity which use to graph. These are kinda like error bars.
+#5. Plot 2 graphs using optimum_density +- uncertainty to get +- velocity which use to graph. These are kinda like error bars. For my data turns put uncertainty is very small so in graph you have to zoom in alot to see uncertaity lines.
 #6. Get fraction of visible mass in galaxy (visible / sum_mass) - many ways of doing this e.g get each fraction for each i and find mean of that. But i will get sum of all visible mass / sum of all combined_mass.
 ##################################################################################################################
 #1.
