@@ -95,7 +95,7 @@ plt.plot(Radias_data_array,velocity_sum_old)
 #Then compare X^2 to old p0 X^2 and if X^2 is smaller means better that old p0 so that p0 and its X^2 added to better lists.
 #Find smallest X^2 aka optimum p0.
 #3. Using optimum p0 find optimum DM mass - find optimum sum mass - find optimum calculated v - use optimum v to plot optimum graph.
-#4. This should be Q17 but all the methods I have tried for that take too long I believe since program keeps on running. So I'm just going to say uncertainty / 1 standard deviation = X^2 error for optimum p0 + 1. BREAKTHROUGH MAYBE IF YOU WANT TO PRINT() SOMETHING HAVE TO TYPE IT BEOFRE PLI.SHOW()
+#4. This finds the uncertainty in optium density. It is the same code as 2. with a 2 at the end of each thing so no confusion and since we esentially do the same thing, but a diffrent if statment which finds all values of unceratniy. Then we find the mean of those uncertainties which is uncertainty of optimum density.
 #5. Plot 2 graphs using optimum_density +- uncertainty to get +- velocity which use to graph. These are kinda like error bars.
 #6. Get fraction of visible mass in galaxy (visible / sum_mass) - many ways of doing this e.g get each fraction for each i and find mean of that. But i will get sum of all visible mass / sum of all combined_mass.
 ##################################################################################################################
@@ -146,13 +146,34 @@ plt.plot(Radias_data_array,v_optimum)
 
 ########################################################################################################################
 #4.MAYBE BREAKTHROUGH CHECK PARAGRAPH.
-uncertainty_in_optimum_density = (closest_0_X_squared + 1)
+
+uncertainty_values = []
+
+for density2 in np.arange((1*10**6), (200*10**6), 1000):
+
+  Mass_density_DM_test2 = (4*np.pi*(density2)*(1.87**2))*(Radias_data_array - (1.87*np.arctan(Radias_data_array / 1.87)))
+
+  Cobmined_mass_test2 = (Mass_density_DM_test2 + Mass_data_array)
+
+  v_model_test2 = np.sqrt(((4.30*10**-6)*Cobmined_mass_test2)/Radias_data_array)
+
+  Xsquared_values2 =  ((velocity_data_array - v_model_test2)**2)/(change_in_velocity_data_array **2)
+
+  X_squared2 = np.sum(Xsquared_values2)
+
+  if(int(X_squared2) == int((closest_0_X_squared + 1))):
+    uncertainty_values.append(density2)
+  
+uncertainty_optium_density = (np.sum(uncertainty_values)) / (len(uncertainty_values))
+
+print('This is the uncertainty of the optimum density:')
+print(uncertainty_optium_density)
 ########################################################################################################################
 #5.
 
-density_plus = Optimum_density + uncertainty_in_optimum_density
+density_plus = Optimum_density + uncertainty_optium_density
 
-density_minus = Optimum_density - uncertainty_in_optimum_density
+density_minus = Optimum_density - uncertainty_optium_density
 
 Mass_DM_plus = (4*np.pi*(density_plus)*(1.87**2))*(Radias_data_array - (1.87*np.arctan(Radias_data_array / 1.87)))
 
@@ -166,10 +187,8 @@ v_plus = np.sqrt(((4.30*10**-6)*Mass_sum_plus)/Radias_data_array)
 
 v_minus = np.sqrt(((4.30*10**-6)*Mass_sum_minus)/Radias_data_array)
 
-plt.plot(Radias_data_array,v_plus,'bo')
-plt.plot(Radias_data_array,v_minus,'ro')
-
-
+plt.plot(Radias_data_array,v_plus,)
+plt.plot(Radias_data_array,v_minus,)
 ##########################################################################################################################
 #6.
 
