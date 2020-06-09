@@ -95,8 +95,9 @@ plt.plot(Radias_data_array,velocity_sum_old)
 #Then compare X^2 to old p0 X^2 and if X^2 is smaller means better that old p0 so that p0 and its X^2 added to better lists.
 #Find smallest X^2 aka optimum p0.
 #3. Using optimum p0 find optimum DM mass - find optimum sum mass - find optimum calculated v - use optimum v to plot optimum graph.
-#4. This should be Q17 but all the methods I have tried for that take too long I believe since program keeps on running. So I'm just going to say uncertainty / 1 standard deviation = X^2 error for optimum p0 + 1.
+#4. This should be Q17 but all the methods I have tried for that take too long I believe since program keeps on running. So I'm just going to say uncertainty / 1 standard deviation = X^2 error for optimum p0 + 1. BREAKTHROUGH MAYBE IF YOU WANT TO PRINT() SOMETHING HAVE TO TYPE IT BEOFRE PLI.SHOW()
 #5. Plot 2 graphs using optimum_density +- uncertainty to get +- velocity which use to graph. These are kinda like error bars.
+#6. Get fraction of visible mass in galaxy (visible / sum_mass) - many ways of doing this e.g get each fraction for each i and find mean of that. But i will get sum of all visible mass / sum of all combined_mass.
 ##################################################################################################################
 #1.
 Xsquared_values_old =  ((velocity_data_array - velocity_sum_old)**2)/(change_in_velocity_data_array **2)
@@ -144,7 +145,7 @@ plt.plot(Radias_data_array,v_optimum)
 
 
 ########################################################################################################################
-#4.
+#4.MAYBE BREAKTHROUGH CHECK PARAGRAPH.
 uncertainty_in_optimum_density = (closest_0_X_squared + 1)
 ########################################################################################################################
 #5.
@@ -168,4 +169,16 @@ v_minus = np.sqrt(((4.30*10**-6)*Mass_sum_minus)/Radias_data_array)
 plt.plot(Radias_data_array,v_plus,'bo')
 plt.plot(Radias_data_array,v_minus,'ro')
 
-plt.show()
+
+##########################################################################################################################
+#6.
+
+sum_visible = np.sum(Mass_data_array)
+sum_all = np.sum(Optimum_Combined_mass)
+
+ratio_of_visible_mass_to_all_mass = ( sum_visible / sum_all )
+
+print ('The fraction of visible mass to all mass in galaxy is :')
+print (ratio_of_visible_mass_to_all_mass)
+
+plt.show() # Have to put this here at the end since if you want to print someting it gas to be before pl.show.
