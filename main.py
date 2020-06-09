@@ -169,7 +169,7 @@ uncertainty_optium_density = (np.sum(uncertainty_values)) / (len(uncertainty_val
 
 actual_uncertainy_of_optimum_density = (uncertainty_optium_density - Optimum_density)
 
-print('This is optimum_density due to uncertainty:')
+print('This is optimum_density due to uncertainty:') 
 print(uncertainty_optium_density)
 print('Hence the actual uncertainty is the diffrence between optimum_density due to uncertainty and optimum density: ')
 print (actual_uncertainy_of_optimum_density)
