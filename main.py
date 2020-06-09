@@ -72,7 +72,7 @@ Mass_data_array = np.array(Mass_data)
 plt.plot(Radias_data_array,velocity_data_array)
 plt.xlabel ('Radias / kpc')
 plt.ylabel ('velocity / km/s')
-plt.title ('Observed velocity and calculated velocites against radias')
+plt.title ('Observed velocity and calculated velocites against radius')
 
 velocity_Visual_array = np.sqrt(((4.30*10**-6)*Mass_data_array)/Radias_data_array)
 
